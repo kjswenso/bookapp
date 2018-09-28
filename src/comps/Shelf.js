@@ -1,11 +1,14 @@
 import React, { Component } from 'react' 
+import BookList from './BookList.js'
 
 class Shelf extends Component {
 	render() {
 		return (
-			   <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                </div>
+			       <div className="bookshelf-books">
+                    <ol className="books-grid">
+                      <BookList />
+                    </ol>
+                    </div>
 			)
 	}
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react' 
-import BookList from './comps/BookList.js'
 import Shelf from './comps/Shelf.js'
 
+
 class Main extends Component {
+
 	render() {
 		return (
 			<div className="list-books">
@@ -10,14 +11,16 @@ class Main extends Component {
 	              <h1>MyReads</h1>
 	            </div>
             <div className="list-books-content">
-                <Shelf />
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                        <BookList />
-                    </ol>
-                  </div>
-                </div>
-                </div>
+              <div className="bookshelf">
+                <h2 className="bookshelf-title">Read</h2>
+                  <Shelf />
+                <h2 className="bookshelf-title">Currently Reading</h2>
+                  <Shelf />
+                <h2 className="bookshelf-title">Want to Read</h2>
+                  <Shelf />
+              </div>
+             </div>
+            </div>
 
 			)
 	}
