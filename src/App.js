@@ -6,26 +6,28 @@ import * as BooksAPI from './BooksAPI'
 
 class App extends Component {
 
-//https://reactjs.org/docs/state-and-lifecycle.html for constructor state
+//https://reactjs.org/docs/state-and-lifecycle.html for initial state
   constructor(props) {
     super(props);
-    this.state = { books: [] }
+    this.state = { books : [] } 
   }
+  
 
 //Udacity lesson componentDidMount Lifecyle Event lesson for code 
   componentDidMount() {
-  BooksAPI.getAll().then((res) => {
-    this.setState({ books: res })
-     console.log(res);
+  BooksAPI.getAll().then((books) => {
+    this.setState({ books })
+     console.log(books);
   })
 }
 
   render() {
     return (
       <div className="app">
-        <Main />
+        <Main books={this.state.books} />
       </div>
     );
   }
 }
+
 export default App
