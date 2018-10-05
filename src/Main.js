@@ -1,15 +1,8 @@
 import React, { Component } from 'react' 
 import Shelf from './comps/Shelf.js'
-import PropTypes from 'prop-types'
-
 
 
 class Main extends Component {
-
-	static propTypes = {
-	    books: PropTypes.array.isRequired,
-	    onSwitchShelf: PropTypes.func.isRequired
-  }
 
 	render() {
 		return (
@@ -19,7 +12,7 @@ class Main extends Component {
 	            </div>
               <div className="list-books-content">
                   <Shelf books={this.props.books} 
-                   onSwitchShelf={this.switchShelf}
+                   switchShelf={this.props.switchShelf}
                   />
               </div>
             </div>

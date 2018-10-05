@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <div className="app">
         <Main books={this.state.books} 
-         onSwitchShelf={this.switchShelf}
+         switchShelf={this.switchShelf}
         />
       </div>
     );
