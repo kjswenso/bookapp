@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import Main from './Main.js'
+import Search from './Search.js'
 import * as BooksAPI from './BooksAPI'
 
 
@@ -40,6 +41,7 @@ class App extends Component {
         <Main books={this.state.books} 
          switchShelf={this.switchShelf}
         />
+        <Search />
       </div>
     );
   }
