@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 
 class BookList extends Component {
 
-
+  static propTypes = {
+      books: PropTypes.object.isRequired,
+      onSwitchShelf: PropTypes.func.isRequired
+  }
 
 	render() {
 		return (
@@ -11,7 +15,9 @@ class BookList extends Component {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.books.imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
-              <select>
+              <select onChange={(e) => {
+                this.props.onSwitchShelf(this.props.book, e.target.value)
+              }}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>

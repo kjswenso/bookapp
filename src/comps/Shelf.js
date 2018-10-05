@@ -1,9 +1,13 @@
 import React, { Component } from 'react' 
 import BookList from './BookList.js'
-
+import PropTypes from 'prop-types'
 
 class Shelf extends Component {
 
+	static propTypes = {
+	    books: PropTypes.array.isRequired,
+	    onSwitchShelf: PropTypes.func.isRequired
+  }
 	
 	render() {
 		return (
@@ -13,6 +17,7 @@ class Shelf extends Component {
 	          	{this.props.books.filter(book => book.shelf === "read").map((book) => (
 				  <BookList books={book}
 				  key={book.id}
+				  onSwitchShelf={this.switchShelf}
 				  />
 	          	))}
 	          </ol>
@@ -22,6 +27,7 @@ class Shelf extends Component {
 				  <BookList 
 				  books={book}
 				  key={book.id}
+				  onSwitchShelf={this.switchShelf}
 				  />
 	          	))}
 	          </ol>
@@ -30,6 +36,7 @@ class Shelf extends Component {
                 {this.props.books.filter(book => book.shelf === "wantToRead").map((book) => (
 				  <BookList books={book}
 				  key={book.id}
+				  onSwitchShelf={this.switchShelf}
 				  />
 	          	))}
 	          </ol>

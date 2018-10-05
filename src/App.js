@@ -11,20 +11,35 @@ class App extends Component {
     super(props);
     this.state = { books : [] } 
   }
-  
 
-//Udacity lesson componentDidMount Lifecyle Event lesson for code 
-  componentDidMount() {
+ componentDidMount() {
+    this.getBooks()
+  }   
+
+/*use BooksAPI to get books array to map through for display
+ *store in function to reuse same code
+ */
+  getBooks() {
   BooksAPI.getAll().then((books) => {
     this.setState({ books })
-     console.log(books);
+     console.log(books)
   })
 }
+
+ switchShelf = (book, shelf) =>  {
+    BooksAPI.update(book, shelf).then(() => {
+      this.getBooks()
+    });
+  }
+
+
 
   render() {
     return (
       <div className="app">
-        <Main books={this.state.books} />
+        <Main books={this.state.books} 
+         onSwitchShelf={this.switchShelf}
+        />
       </div>
     );
   }
