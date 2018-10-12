@@ -65,7 +65,7 @@ class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                 {this.state.showingBooks.filter((book) => book.imageLinks).map((book, shelf) => (
+                 {this.state.showingBooks.map((book, shelf) => (
 		            <BookList 
 		              books={book} 
 		              key={book.id}

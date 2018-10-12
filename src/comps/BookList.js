@@ -4,10 +4,15 @@ import React, { Component } from 'react'
 class BookList extends Component {
 
 	render() {
+
+    //CL Mason caught that I was filtering out books and suggested this correction
+    let bookImage = this.props.books.imageLinks ? 
+      this.props.books.imageLinks.thumbnail : ''
+
 		return (
-		<div className="book">
+		  <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.books.imageLinks.thumbnail})` }}></div>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${bookImage})` }}></div>
             <div className="book-shelf-changer">
               <select onChange={(e) => {
                 this.props.switchShelf(this.props.books, e.target.value)
