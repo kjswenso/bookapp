@@ -38,10 +38,12 @@ class App extends Component {
   render() {
     return (
       <div className="app">
+        <Search books={this.state.books}
+         switchShelf={this.switchShelf}
+         />
         <Main books={this.state.books} 
          switchShelf={this.switchShelf}
         />
-        <Search />
       </div>
     );
   }

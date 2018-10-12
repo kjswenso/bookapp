@@ -1,6 +1,6 @@
 import React, { Component } from 'react' 
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
+import * as BooksAPI from './BooksAPI'
+import BookList from './comps/BookList.js'
 
 class Search extends Component {
 
@@ -9,12 +9,44 @@ class Search extends Component {
  * to update and bind my search component
  */
 	state = {
-		query: ''
+		query: '',
+		showingBooks: []
 	}
 
 	updateQuery = (query) => {
 		this.setState({ query })
+		this.searchBooks(query)
 	}
+
+//CL Mason through Slack DM helped turn this search that didn't work into the one below to avoid errors
+	/*searchBooks = (query) => {
+		if (query) {
+			BooksAPI.search(query).then(searched) => {
+				this.setState({ showingBooks: searched })
+			} else {
+				this.setState({ showingBooks: [] })
+			}
+			return search
+		}
+	}*/
+
+	searchBooks = (query) => {
+    if (query) {
+      BooksAPI.search(query).then((searched) => {
+      	if (searched.error) {
+      		this.setState( { showingBooks: [] })
+      	} else {
+          	this.setState({ showingBooks: searched })
+    	}
+      })
+    }else {
+      this.setState({ showingBooks: [] })
+    }
+  }
+
+	clearQuery = () => {
+			this.setState({ query : '' })
+		}
 
 	render() {
 		return(
@@ -28,11 +60,18 @@ class Search extends Component {
 				  value={this.state.query}
 				  onChange={(e) => this.updateQuery(e.target.value)}
                   />
-
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+                 {this.state.showingBooks.filter((book) => book.imageLinks).map((book, shelf) => (
+		            <BookList 
+		              books={ book } 
+		              key={ book.id }
+		              switchShelf={this.props.switchShelf}
+		            />
+              	))}
+              </ol>
             </div>
           </div>
         );
