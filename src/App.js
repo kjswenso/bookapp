@@ -39,12 +39,12 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Route path="/search" render={() => (
+        <Route exact path="/search" render={() => (
           <Search books={this.state.books}
            switchShelf={this.switchShelf}
            />
         )} />
-        <Route path="/" render={() => (
+        <Route exact path="/" render={() => (
           <Main books={this.state.books} 
            switchShelf={this.switchShelf}
           />

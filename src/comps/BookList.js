@@ -14,7 +14,8 @@ class BookList extends Component {
           <div className="book-top">
             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${bookImage})` }}></div>
             <div className="book-shelf-changer">
-              <select onChange={(e) => {
+              <select value={this.props.books.shelf ? this.props.books.shelf : 'none'} 
+              onChange={(e) => {
                 this.props.switchShelf(this.props.books, e.target.value)
               }}>
                 <option value="move">Move to...</option>
