@@ -37,8 +37,18 @@ class Search extends Component {
       	if (searched.error) {
       		this.setState( { showingBooks: [] })
       	} else {
-          	this.setState({ showingBooks: searched })
+          	this.props.books.map(book => {
+          		this.state.showingBooks.forEach(showingBook => {
+          			if (book.id === showingBook.id) {
+          				console.log('match');
+          				showingBook.shelf = book.shelf;
+          			} else {
+          				showingBook.shelf = "";
+          			}
+          		})
+          	})
     	}
+    	this.setState({ showingBooks: searched })
       })
     }else {
       this.setState({ showingBooks: [] })
@@ -65,7 +75,7 @@ class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                 {this.state.showingBooks.map((book, shelf) => (
+                 {this.state.showingBooks.map((book) => ( 
 		            <BookList 
 		              books={book} 
 		              key={book.id}
