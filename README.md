@@ -20,3 +20,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Code followed and formatted from Udacity React Lessons 3, 4, and 5
 * https://reactjs.org/docs/state-and-lifecycle.html for initial state and Ryan Waite for the initial constructor 
 * CL Mason through GWG Slack DM for her gracious and patient help, especially when I ran into many, many errors 
+* @susanna [FEND] through slack DM for providing the comparison in the search to update the proper checking of books on the shelf when searched

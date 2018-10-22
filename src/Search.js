@@ -14,6 +14,7 @@ class Search extends Component {
 		showingBooks: []
 	}
 
+
 	updateQuery = (query) => {
 		this.setState({ query })
 		this.searchBooks(query)
@@ -31,16 +32,29 @@ class Search extends Component {
 		}
 	}*/
 
+
+//@susanna [FEND] through slack DM for providing the comparison in the search 
 	 	searchBooks = (query) => {
      if (query) {
        BooksAPI.search(query).then((searched) => {
        	if (searched.error) {
        		this.setState( { showingBooks: [] })
        	} else {
+           	searched.map(searchedBook => {
+           		for (let book of this.props.books) {
+           			if (book.id === searchedBook.id) {
+           				searchedBook.shelf = book.shelf;
+           				return searchedBook
+           			} else {
+           				searchedBook.shelf = "none";
+           			}
+           		}
+           		return searchedBook
+           	})
            	this.setState({ showingBooks: searched })
      	}
        })
-     }else {
+     } else {
        this.setState({ showingBooks: [] })
      }
    }
