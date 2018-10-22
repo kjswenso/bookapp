@@ -31,29 +31,19 @@ class Search extends Component {
 		}
 	}*/
 
-	searchBooks = (query) => {
-    if (query) {
-      BooksAPI.search(query).then((searched) => {
-      	if (searched.error) {
-      		this.setState( { showingBooks: [] })
-      	} else {
-          	this.props.books.map(book => {
-          		this.state.showingBooks.forEach(showingBook => {
-          			if (book.id === showingBook.id) {
-          				console.log('match');
-          				showingBook.shelf = book.shelf;
-          			} else {
-          				showingBook.shelf = "";
-          			}
-          		})
-          	})
-    	}
-    	this.setState({ showingBooks: searched })
-      })
-    }else {
-      this.setState({ showingBooks: [] })
-    }
-  }
+	 	searchBooks = (query) => {
+     if (query) {
+       BooksAPI.search(query).then((searched) => {
+       	if (searched.error) {
+       		this.setState( { showingBooks: [] })
+       	} else {
+           	this.setState({ showingBooks: searched })
+     	}
+       })
+     }else {
+       this.setState({ showingBooks: [] })
+     }
+   }
 
 	clearQuery = () => {
 			this.setState({ query : '' })
@@ -79,7 +69,6 @@ class Search extends Component {
 		            <BookList 
 		              books={book} 
 		              key={book.id}
-		              shelf={book.shelf}
 		              switchShelf={this.props.switchShelf}
 		            />
               	))}
